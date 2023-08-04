@@ -1,4 +1,4 @@
-# -Package Name-
+# Xperience by Kentico Siteimprove
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -51,7 +51,7 @@ Distributed under the MIT License. See [`LICENSE.md`](./LICENSE.md) for more inf
 <!-- SUPPORT -->
 ## Support
 
-This contribution has **Full support by 7-day bug-fix policy** / **Kentico Labs limited support**.
+This contribution has **Kentico Labs limited support**.
 
 See [`SUPPORT.md`](https://github.com/Kentico/.github/blob/main/SUPPORT.md#full-support) for more information.
 
