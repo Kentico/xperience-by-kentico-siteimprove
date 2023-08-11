@@ -1,0 +1,69 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+	<TargetFramework>net6.0</TargetFramework>
+	<ImplicitUsings>enable</ImplicitUsings>
+	<Nullable>disable</Nullable>
+	<Title>Siteimprove integration for Xperience by Kentico</Title>
+	<Authors>Michal Adler</Authors>
+	<Description>Siteimprove integration into Xperience by Kentico</Description>
+	<PackageProjectUrl>https://github.com/Kentico/xperience-by-kentico-siteimprove</PackageProjectUrl>
+	<RepositoryUrl>https://github.com/Kentico/xperience-by-kentico-siteimprove</RepositoryUrl>
+	<PackageId>$(AssemblyName)</PackageId>
+	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	<Version>2.0.1</Version>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="PluginConfiguration.js" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="PluginConfiguration.js" />
+	  <EmbeddedResource Include="Scripts.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>Scripts.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\..\LICENSE.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Kentico.Xperience.Admin" Version="26.5.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Scripts.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Scripts.resx</DependentUpon>
+	  </Compile>
+	  <Compile Update="SiteimproveResources.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>SiteimproveResources.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="Scripts.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>Scripts.Designer.cs</LastGenOutput>
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="SiteimproveResources.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>SiteimproveResources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
+	
+</Project>

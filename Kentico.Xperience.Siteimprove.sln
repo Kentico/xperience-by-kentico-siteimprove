@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kentico.Xperience.Siteimprove", "src\Kentico.Xperience.Siteimprove\Kentico.Xperience.Siteimprove.csproj", "{CCF46A33-A83C-4A1D-8905-471D26307B7D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kentico.Xperience.Siteimprove.Tests", "tests\Kentico.Xperience.Siteimprove.Tests\Kentico.Xperience.Siteimprove.Tests.csproj", "{60BFB501-C28B-4E84-BD30-16E2658FC601}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CCF46A33-A83C-4A1D-8905-471D26307B7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCF46A33-A83C-4A1D-8905-471D26307B7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCF46A33-A83C-4A1D-8905-471D26307B7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCF46A33-A83C-4A1D-8905-471D26307B7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60BFB501-C28B-4E84-BD30-16E2658FC601}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60BFB501-C28B-4E84-BD30-16E2658FC601}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60BFB501-C28B-4E84-BD30-16E2658FC601}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60BFB501-C28B-4E84-BD30-16E2658FC601}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7A33A14B-DAFE-4504-9A7A-B31405F5E02F}
+	EndGlobalSection
+EndGlobal
