@@ -74,13 +74,13 @@ By following the steps below, the integration setups automatically on the first 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-# CMS Plugin
+### CMS Plugin
 
 The plugin is accessible only from Preview mode in the Pages application.
 
 Pages are automatically rechecked when republished to ensure the plugin displays up-to-date information.
 
-# CMS Deeplink
+### CMS Deeplink
 
 Meta tag is added to the head of each page to allow for easier setup of CMS Deeplink on Siteimprove's side. The meta tag follows pattern recommended by Siteimprove:
 
@@ -91,11 +91,11 @@ Meta tag is added to the head of each page to allow for easier setup of CMS Deep
 <!-- CONTRIBUTING -->
 ## Contributing
 
+For Contributing please see [`CONTRIBUTING.md`](https://github.com/Kentico/.github/blob/main/CONTRIBUTING.md) for more information and follow the [`CODE_OF_CONDUCT`](https://github.com/Kentico/.github/blob/main/CODE_OF_CONDUCT.md)
 
-* .NET 6+ SDK
-    * https://dotnet.microsoft.com/en-us/download/dotnet/7.0
+### Requirements
 
-For Contributing please see  <a href="./CONTRIBUTING.md">`CONTRIBUTING.md`</a> for more information.
+* [.NET 7+ SDK](https://dotnet.microsoft.com/en-us/download/dotnet/7.0)
 
 <!-- LICENSE -->
 ## License
@@ -107,6 +107,6 @@ Distributed under the MIT License. See [`LICENSE.md`](./LICENSE.md) for more inf
 
 This contribution has __Kentico Labs limited support__.
 
-See [`SUPPORT.md`](./SUPPORT.md) for more information.
+See [`SUPPORT.md`](https://github.com/Kentico/.github/blob/main/SUPPORT.md#labs-limited-support) for more information.
 
-For any security issues see [`SECURITY.md`](./SECURITY.md).
+For any security issues see [`SECURITY.md`](https://github.com/Kentico/.github/blob/main/SECURITY.md).
