@@ -103,14 +103,14 @@ namespace Kentico.Xperience.Siteimprove
 
             sites = await Get<SiteimproveSites>(requestPath, cancellationToken, client);
 
-            if (sites == null)
+            if (sites == null || sites.Sites == null)
             {
                 return siteID;
             }
 
             string domain = GetDomain();
 
-            var site = sites.Sites.FirstOrDefault(s => s.SiteUrl.Contains($"://{domain}"));
+            var site = sites.Sites.FirstOrDefault(s => s.SiteUrl != null && s.SiteUrl.Contains($"://{domain}"));
 
             if (site == null)
             {
@@ -132,12 +132,9 @@ namespace Kentico.Xperience.Siteimprove
             var client = HttpClient;
             bool isContentCheckEnabled = await IsContentCheckReady(client, cancellationToken);
 
-            if (!isContentCheckEnabled)
+            if (!isContentCheckEnabled && await TryEnableContentCheck(client, cancellationToken))
             {
-                if (await TryEnableContentCheck(client, cancellationToken))
-                {
-                    isContentCheckEnabled = await IsContentCheckReady(client, cancellationToken);
-                }
+                isContentCheckEnabled = await IsContentCheckReady(client, cancellationToken);
             }
 
             return isContentCheckEnabled;
@@ -196,7 +193,7 @@ namespace Kentico.Xperience.Siteimprove
                 string requestPath = string.Format(SiteimproveConstants.TOKEN_URL, Uri.EscapeDataString(SiteimproveConstants.CMS_NAME));
                 var receivedToken = await Get<SiteimproveToken>(requestPath, cancellationToken);
 
-                if (receivedToken == null)
+                if (receivedToken == null || receivedToken.Value == null)
                 {
                     return token;
                 }
@@ -209,7 +206,7 @@ namespace Kentico.Xperience.Siteimprove
         }
 
 
-        private async Task<T> Get<T>(string requestPath, CancellationToken? cancellationToken = null, HttpClient client = null) where T : class
+        private async Task<T?> Get<T>(string requestPath, CancellationToken? cancellationToken = null, HttpClient? client = null) where T : class
         {
             client ??= HttpClient;
 
@@ -226,7 +223,7 @@ namespace Kentico.Xperience.Siteimprove
         }
 
 
-        private async Task<HttpResponseMessage> Post(string requestPath, CancellationToken? cancellationToken = null, HttpClient client = null)
+        private async Task<HttpResponseMessage?> Post(string requestPath, CancellationToken? cancellationToken = null, HttpClient? client = null)
         {
             client ??= HttpClient;
 

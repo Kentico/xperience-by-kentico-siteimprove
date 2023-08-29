@@ -11,6 +11,6 @@ namespace Kentico.Xperience.Siteimprove
         /// Token.
         /// </summary>
         [JsonPropertyName("token")]
-        public string Value { get; set; }
+        public string? Value { get; set; }
     }
 }

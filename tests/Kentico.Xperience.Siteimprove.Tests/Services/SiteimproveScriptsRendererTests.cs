@@ -2,9 +2,12 @@
 
 using Kentico.Web.Mvc;
 
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.AspNetCore.Routing;
 
 using NSubstitute;
 
@@ -48,6 +51,7 @@ namespace Kentico.Xperience.Siteimprove.Tests
                 base.RegisterTestServices();
 
                 actionContextAccessor = Substitute.For<IActionContextAccessor>();
+                actionContextAccessor.ActionContext = Substitute.For<ActionContext>(Substitute.For<HttpContext>(), new RouteData(), new ActionDescriptor());
                 Service.Use<IActionContextAccessor>(actionContextAccessor);
 
                 urlHelperFactory = Substitute.For<IUrlHelperFactory>();

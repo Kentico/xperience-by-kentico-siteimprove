@@ -10,6 +10,6 @@ namespace Kentico.Xperience.Siteimprove
         /// <summary>
         /// Node to process.
         /// </summary>
-        public TreeNode Node { get; init; }
+        public TreeNode? Node { get; init; }
     }
 }

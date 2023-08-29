@@ -8,13 +8,13 @@
         /// <summary>
         /// API User used to send requests.
         /// </summary>
-        public string APIUser { get; set; }
+        public string? APIUser { get; set; }
 
 
         /// <summary>
         /// API Key used to send requests.
         /// </summary>
-        public string APIKey { get; set; }
+        public string? APIKey { get; set; }
 
 
         /// <summary>

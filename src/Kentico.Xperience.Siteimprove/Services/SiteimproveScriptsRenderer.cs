@@ -25,6 +25,12 @@ namespace Kentico.Xperience.Siteimprove
         {
             var actionContextAccessor = Service.Resolve<IActionContextAccessor>();
             var urlHelperFactory = Service.Resolve<IUrlHelperFactory>();
+
+            if (actionContextAccessor.ActionContext == null)
+            {
+                return new HtmlContentBuilder();
+            }
+
             var urlHelper = urlHelperFactory.GetUrlHelper(actionContextAccessor.ActionContext);
             var routeValues = new { pageId };
 

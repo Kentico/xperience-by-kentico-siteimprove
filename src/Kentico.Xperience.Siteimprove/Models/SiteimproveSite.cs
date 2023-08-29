@@ -18,6 +18,6 @@ namespace Kentico.Xperience.Siteimprove
         /// Site domain URL.
         /// </summary>
         [JsonPropertyName("url")]
-        public string SiteUrl { get; set; }
+        public string? SiteUrl { get; set; }
     }
 }

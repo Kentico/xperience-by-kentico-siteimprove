@@ -46,7 +46,7 @@ namespace Kentico.Xperience.Siteimprove
         }
 
 
-        private void Workflow_PublishAfter(object sender, WorkflowEventArgs e)
+        private void Workflow_PublishAfter(object? sender, WorkflowEventArgs e)
         {
             var node = e.PublishedDocument;
 
@@ -54,7 +54,7 @@ namespace Kentico.Xperience.Siteimprove
         }
 
 
-        private void Document_MoveAfter(object sender, DocumentEventArgs e)
+        private void Document_MoveAfter(object? sender, DocumentEventArgs e)
         {
             var movedNode = e.Node;
 
@@ -64,7 +64,7 @@ namespace Kentico.Xperience.Siteimprove
         }
 
 
-        private void Sql_ExecuteQueryAfter(object sender, ExecuteQueryEventArgs<DataSet> e)
+        private void Sql_ExecuteQueryAfter(object? sender, ExecuteQueryEventArgs<DataSet> e)
         {
             var query = e.Query;
 
@@ -89,13 +89,13 @@ namespace Kentico.Xperience.Siteimprove
         }
 
 
-        private void Request_RunEndRequestTasksExecute(object sender, EventArgs e)
+        private void Request_RunEndRequestTasksExecute(object? sender, EventArgs e)
         {
             SiteimproveQueueWorker.Current.EnsureRunningThread();
         }
 
 
-        private async void Application_PostStartExecute(object sender, EventArgs args)
+        private async void Application_PostStartExecute(object? sender, EventArgs args)
         {
             var siteimproveService = Service.Resolve<ISiteimproveService>();
 

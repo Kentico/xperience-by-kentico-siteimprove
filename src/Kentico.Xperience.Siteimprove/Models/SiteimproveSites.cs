@@ -11,7 +11,7 @@ namespace Kentico.Xperience.Siteimprove
         /// Collection of sites.
         /// </summary>
         [JsonPropertyName("items")]
-        public IEnumerable<SiteimproveSite> Sites { get; set; }
+        public IEnumerable<SiteimproveSite>? Sites { get; set; }
 
 
         /// <summary>
