@@ -50,7 +50,7 @@ By following the steps below, the integration setups automatically on the first 
 
 1. In your `appsettings.json`, add section
     ```json
-    "Siteimprove": {
+    "xperience.siteimprove": {
       "APIUser": "<Siteimprove API user>",
       "APIKey": "<Siteimprove API key>",
       "EnableContentCheck" : "<true/false>" // set this to true if you are subscribed to Prepublish feature

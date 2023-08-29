@@ -68,7 +68,7 @@
         /// <summary>
         /// Name of the Siteimprove section in the 'appsettings.json' file.
         /// </summary>
-        public const string SECTION_KEY = "Siteimprove";
+        public const string SECTION_KEY = "xperience.siteimprove";
 
 
         /// <summary>
