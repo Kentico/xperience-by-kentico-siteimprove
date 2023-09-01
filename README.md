@@ -11,11 +11,11 @@ Xperience by Kentico Siteimprove integration allows users to check pages for iss
 ## Getting Started
 ### Prerequisites
 
-* Xperience by Kentico >= 26.5.0
+* Xperience by Kentico >= 26.0.0
 
 ### Installation
 
-1. Add project reference or NuGet from provided file (NuGet only for Xperience by Kentico 26.5.0)
+1. Add project reference
 
 ## Setup of CMS Plugin
 By following the steps below, the integration setups automatically on the first startup.
