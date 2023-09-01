@@ -1,5 +1,5 @@
-// var is used here because the plugin needs access to this variable
-var _si = window._si || [];
+const _si = window._si || [];
+window._si = _si;
 
 const HIGHLIGHT_CLASS = "siteimprove-content-check-highlight";
 const HIGHLIGHT_SECONDS = 60; 
