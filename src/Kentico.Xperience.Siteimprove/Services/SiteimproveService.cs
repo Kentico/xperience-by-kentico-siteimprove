@@ -23,9 +23,6 @@ namespace Kentico.Xperience.Siteimprove
         private bool isContentCheckEnabled = false;
 
 
-        private HttpClient HttpClient => httpClientFactory.CreateClient(SiteimproveConstants.CLIENT_NAME);
-
-
         /// <summary>
         /// Initializes an instance of the <see cref="SiteimproveService"/> class.
         /// </summary>
@@ -58,7 +55,7 @@ namespace Kentico.Xperience.Siteimprove
         /// <inheritdoc/>
         public async Task CheckPages(IEnumerable<string> urls, CancellationToken? cancellationToken = null)
         {
-            var client = HttpClient;
+            var client = GetHttpClient();
 
             foreach (string url in urls)
             {
@@ -90,7 +87,7 @@ namespace Kentico.Xperience.Siteimprove
 
         internal async Task<long> GetSiteID(CancellationToken? cancellationToken = null)
         {
-            var client = HttpClient;
+            var client = GetHttpClient();
             string requestPath = string.Format(SiteimproveConstants.SITES_PATH, 1);
             var sites = await Get<SiteimproveSites>(requestPath, cancellationToken, client);
 
@@ -129,7 +126,7 @@ namespace Kentico.Xperience.Siteimprove
                 return false;
             }
 
-            var client = HttpClient;
+            var client = GetHttpClient();
             bool isContentCheckEnabled = await IsContentCheckReady(client, cancellationToken);
 
             if (!isContentCheckEnabled && await TryEnableContentCheck(client, cancellationToken))
@@ -138,6 +135,12 @@ namespace Kentico.Xperience.Siteimprove
             }
 
             return isContentCheckEnabled;
+        }
+
+
+        private HttpClient GetHttpClient()
+        {
+            return httpClientFactory.CreateClient(SiteimproveConstants.CLIENT_NAME);
         }
 
 
@@ -208,7 +211,7 @@ namespace Kentico.Xperience.Siteimprove
 
         private async Task<T?> Get<T>(string requestPath, CancellationToken? cancellationToken = null, HttpClient? client = null) where T : class
         {
-            client ??= HttpClient;
+            client ??= GetHttpClient();
 
             try
             {
@@ -225,7 +228,7 @@ namespace Kentico.Xperience.Siteimprove
 
         private async Task<HttpResponseMessage?> Post(string requestPath, CancellationToken? cancellationToken = null, HttpClient? client = null)
         {
-            client ??= HttpClient;
+            client ??= GetHttpClient();
 
             try
             {
