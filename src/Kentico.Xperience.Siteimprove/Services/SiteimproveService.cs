@@ -91,7 +91,7 @@ namespace Kentico.Xperience.Siteimprove
             string requestPath = string.Format(SiteimproveConstants.SITES_PATH, 1);
             var sites = await Get<SiteimproveSites>(requestPath, cancellationToken, client);
 
-            if (sites == null)
+            if (sites == null || sites.TotalItems == 0)
             {
                 return siteID;
             }
@@ -219,7 +219,7 @@ namespace Kentico.Xperience.Siteimprove
             }
             catch (Exception ex)
             {
-                eventLogService.LogException(nameof(SiteimproveService), nameof(Get), ex);
+                eventLogService.LogException(nameof(SiteimproveService), nameof(Get), ex, additionalMessage: $"{nameof(Get)} failed. Request path: {requestPath}");
             }
 
             return null;
@@ -236,7 +236,7 @@ namespace Kentico.Xperience.Siteimprove
             }
             catch (Exception ex)
             {
-                eventLogService.LogException(nameof(SiteimproveService), nameof(Get), ex);
+                eventLogService.LogException(nameof(SiteimproveService), nameof(Post), ex, additionalMessage: $"{nameof(Post)} failed. Request path: {requestPath}");
             }
 
             return null;
