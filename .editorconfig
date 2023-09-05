@@ -216,12 +216,6 @@ csharp_style_var_when_type_is_apparent                                    = true
 dotnet_diagnostic.IDE0007.severity                                        = error
 dotnet_diagnostic.IDE0008.severity                                        = error
 
-csharp_style_expression_bodied_constructors                               = true : error
-dotnet_diagnostic.IDE0021.severity                                        = error
-
-csharp_style_expression_bodied_methods                                    = true : error
-dotnet_diagnostic.IDE0022.severity                                        = error
-
 csharp_style_expression_bodied_operators                                  = true : error
 dotnet_diagnostic.IDE0023.severity                                        = error
 dotnet_diagnostic.IDE0024.severity                                        = error
