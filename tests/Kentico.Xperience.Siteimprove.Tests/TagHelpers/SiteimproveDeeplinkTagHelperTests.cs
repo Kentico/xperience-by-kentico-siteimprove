@@ -42,9 +42,7 @@ namespace Kentico.Xperience.Siteimprove.Tests
                 tagHelper = new SiteimproveDeeplinkTagHelper();
                 context = new TagHelperContext(tagName, new TagHelperAttributeList(), new Dictionary<object, object>(), "test");
                 output = new TagHelperOutput(tagName, new TagHelperAttributeList(), (useCached, htmlEncoder) =>
-                {
-                    return Task.FromResult<TagHelperContent>(new DefaultTagHelperContent());
-                });
+                    Task.FromResult<TagHelperContent>(new DefaultTagHelperContent()));
             }
 
 

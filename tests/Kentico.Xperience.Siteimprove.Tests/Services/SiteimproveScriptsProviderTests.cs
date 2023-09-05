@@ -47,14 +47,11 @@ namespace Kentico.Xperience.Siteimprove.Tests
                 bool enableContentCheck = true;
                 service.IsContentCheckEnabled().Returns(Task.FromResult(enableContentCheck));
 
-                var result = await scriptsProvider.GetConfigurationScript(pageId);
+                string result = await scriptsProvider.GetConfigurationScript(pageId);
 
-                var expectedResult = $"{Scripts.PluginConfiguration}('{TOKEN}', null, {enableContentCheck.ToString().ToLower()});";
+                string expectedResult = $"{Scripts.PluginConfiguration}('{TOKEN}', null, {enableContentCheck.ToString().ToLower()});";
 
-                Assert.Multiple(() =>
-                {
-                    Assert.That(result, Is.EqualTo(expectedResult));
-                });
+                Assert.That(result, Is.EqualTo(expectedResult));
             }
 
 
@@ -86,20 +83,17 @@ namespace Kentico.Xperience.Siteimprove.Tests
 
                 service.IsContentCheckEnabled().Returns(Task.FromResult(enableContentCheck));
 
-                var result = await scriptsProvider.GetConfigurationScript(pageId);
+                string result = await scriptsProvider.GetConfigurationScript(pageId);
 
-                var expectedResult = $"{Scripts.PluginConfiguration}('{TOKEN}', 'http://{DOMAIN}/{nodeUrl}', {enableContentCheck.ToString().ToLower()});";
+                string expectedResult = $"{Scripts.PluginConfiguration}('{TOKEN}', 'http://{DOMAIN}/{nodeUrl}', {enableContentCheck.ToString().ToLower()});";
 
-                Assert.Multiple(() =>
-                {
-                    Assert.That(result, Is.EqualTo(expectedResult));
-                });
+                Assert.That(result, Is.EqualTo(expectedResult));
             }
 
 
             public class FakeDocumentURLProvider : DocumentURLProvider
             {
-                private string url;
+                private readonly string url;
 
 
                 public FakeDocumentURLProvider(string url)
@@ -108,7 +102,7 @@ namespace Kentico.Xperience.Siteimprove.Tests
                 }
 
 
-                protected override string GetUrlInternal(TreeNode node, string cultureCode)
+                protected override string GetUrlInternal(TreeNode page, string cultureCode)
                 {
                     return url;
                 }

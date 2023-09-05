@@ -77,7 +77,7 @@ namespace Kentico.Xperience.Siteimprove.Tests
                 Assert.Multiple(() =>
                 {
                     Assert.That(token, Is.EqualTo(TOKEN));
-                    Assert.That(numberOfRequests, Is.EqualTo(0));
+                    Assert.That(NumberOfRequests, Is.EqualTo(0));
 
                     eventLogService.Received(0).LogEvent(Arg.Any<EventLogData>());
                     settingsProvider.ReceivedWithAnyArgs(0).SetFake(default);
@@ -103,16 +103,15 @@ namespace Kentico.Xperience.Siteimprove.Tests
                 Assert.Multiple(() =>
                 {
                     Assert.That(token, Is.EqualTo(TOKEN));
-                    Assert.That(numberOfRequests, Is.EqualTo(1));
+                    Assert.That(NumberOfRequests, Is.EqualTo(1));
 
                     eventLogService.Received(0).LogEvent(Arg.Any<EventLogData>());
                     settingsProvider.Received(1).SetFake(Arg.Is<SettingsKeyInfo>(i =>
                         string.Equals(i.KeyName, SiteimproveConstants.TOKEN_SETTINGS_KEY_NAME, StringComparison.Ordinal)
                         && string.Equals(i.KeyValue, TOKEN, StringComparison.Ordinal)
                         && i.KeyCategoryID == CATEGORY_ID
-                        && i.KeyIsCustom == true
-                        && i.KeyIsHidden == true
-                    ));
+                        && i.KeyIsCustom
+                        && i.KeyIsHidden));
                 });
             }
 
@@ -132,7 +131,7 @@ namespace Kentico.Xperience.Siteimprove.Tests
                 Assert.Multiple(() =>
                 {
                     Assert.That(token, Is.Empty);
-                    Assert.That(numberOfRequests, Is.EqualTo(1));
+                    Assert.That(NumberOfRequests, Is.EqualTo(1));
 
                     eventLogService.Received(1).LogEvent(Arg.Is<EventLogData>(i => i.EventType == EventTypeEnum.Error));
                     settingsProvider.ReceivedWithAnyArgs(0).SetFake(default);
@@ -167,8 +166,8 @@ namespace Kentico.Xperience.Siteimprove.Tests
 
                 Assert.Multiple(() =>
                 {
-                    Assert.That(numberOfRequests, Is.EqualTo(urls.Count()));
-                    Assert.That(numberOfRequests, Is.EqualTo(responseMessages.Count));
+                    Assert.That(NumberOfRequests, Is.EqualTo(urls.Count()));
+                    Assert.That(NumberOfRequests, Is.EqualTo(responseMessages.Count));
 
                     httpClientFactory.Received(1).CreateClient(SiteimproveConstants.CLIENT_NAME);
                     eventLogService.Received(errors).LogEvent(Arg.Is<EventLogData>(i => i.EventType == EventTypeEnum.Error));
@@ -248,7 +247,7 @@ namespace Kentico.Xperience.Siteimprove.Tests
                 Assert.Multiple(() =>
                 {
                     Assert.That(result, Is.EqualTo(expectedResult));
-                    Assert.That(numberOfRequests, Is.EqualTo(responseMessages.Count));
+                    Assert.That(NumberOfRequests, Is.EqualTo(responseMessages.Count));
 
                     httpClientFactory.Received(enableContentCheck ? 1 : 0).CreateClient(SiteimproveConstants.CLIENT_NAME);
                     eventLogService.Received(errors).LogEvent(Arg.Is<EventLogData>(i => i.EventType == EventTypeEnum.Error));
@@ -273,7 +272,7 @@ namespace Kentico.Xperience.Siteimprove.Tests
                 Assert.Multiple(() =>
                 {
                     Assert.That(result, Is.EqualTo(false));
-                    Assert.That(numberOfRequests, Is.EqualTo(2));
+                    Assert.That(NumberOfRequests, Is.EqualTo(2));
 
                     httpClientFactory.Received(1).CreateClient(SiteimproveConstants.CLIENT_NAME);
                     eventLogService.Received(1).LogEvent(Arg.Is<EventLogData>(i =>
@@ -398,12 +397,12 @@ namespace Kentico.Xperience.Siteimprove.Tests
         [TestFixture]
         public class GetSideIDTests : SiteimproveServiceTestsBase
         {
-            private static long invalidID = -1;
+            private static readonly long invalidID = -1;
 
             [TestCaseSource(nameof(TestCases))]
             public async Task GetSiteID_TestCases(IList<HttpResponseMessage> responseMessages, long expectedResult)
             {
-                int errors = responseMessages.Where(r => r?.StatusCode != HttpStatusCode.OK).Count();
+                int errors = responseMessages.Count(r => r?.StatusCode != HttpStatusCode.OK);
 
                 MockHttpClient(responseMessages);
 
@@ -412,7 +411,7 @@ namespace Kentico.Xperience.Siteimprove.Tests
                 Assert.Multiple(() =>
                 {
                     Assert.That(result, Is.EqualTo(expectedResult));
-                    Assert.That(numberOfRequests, Is.EqualTo(responseMessages.Count));
+                    Assert.That(NumberOfRequests, Is.EqualTo(responseMessages.Count));
 
                     httpClientFactory.Received(1).CreateClient(SiteimproveConstants.CLIENT_NAME);
                     eventLogService.Received(errors).LogEvent(Arg.Is<EventLogData>(i => i.EventType == EventTypeEnum.Error));
@@ -459,7 +458,7 @@ namespace Kentico.Xperience.Siteimprove.Tests
                 Assert.Multiple(() =>
                 {
                     Assert.That(result, Is.EqualTo(invalidID));
-                    Assert.That(numberOfRequests, Is.EqualTo(2));
+                    Assert.That(NumberOfRequests, Is.EqualTo(2));
 
                     httpClientFactory.Received(1).CreateClient(SiteimproveConstants.CLIENT_NAME);
                     eventLogService.Received(1).LogEvent(Arg.Is<EventLogData>(i =>

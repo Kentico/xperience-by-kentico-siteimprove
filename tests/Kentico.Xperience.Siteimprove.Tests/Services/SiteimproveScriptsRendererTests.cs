@@ -76,7 +76,7 @@ namespace Kentico.Xperience.Siteimprove.Tests
                 urlHelper.Kentico().RouteUrl(default, default, default, default).ReturnsForAnyArgs(scriptUrl);
 
                 var scriptTag = scriptsRenderer.RenderConfigurationScriptTag(pageID);
-                var result = GetValue(scriptTag);
+                string result = GetValue(scriptTag);
 
                 string expectedResult = $"<script async=\"\" src=\"{scriptUrl}\" type=\"text/javascript\"></script>";
 

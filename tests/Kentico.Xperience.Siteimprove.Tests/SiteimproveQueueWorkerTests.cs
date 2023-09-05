@@ -129,7 +129,7 @@ namespace Kentico.Xperience.Siteimprove.Tests
 
 
             [Test]
-            public void EnqeueNodes_AllNodesWithoutUrl_PageRechecksNotRequested()
+            public async Task EnqeueNodes_AllNodesWithoutUrl_PageRechecksNotRequested()
             {
                 ResetAllFakes();
                 string className = $"{CLASS_NAME}_NO_URL";
@@ -155,10 +155,7 @@ namespace Kentico.Xperience.Siteimprove.Tests
 
                 SiteimproveQueueWorker.EnqueueNodes(nodes);
 
-                Assert.Multiple(async () =>
-                {
-                    await service.Received(0).CheckPages(Arg.Any<IEnumerable<string>>());
-                });
+                await service.Received(0).CheckPages(Arg.Any<IEnumerable<string>>());
             }
 
 

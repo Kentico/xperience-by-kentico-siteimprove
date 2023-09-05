@@ -60,7 +60,7 @@ namespace Kentico.Xperience.Siteimprove
         {
             var client = HttpClient;
 
-            foreach (var url in urls)
+            foreach (string url in urls)
             {
                 string requestPath = string.Format(SiteimproveConstants.PAGE_CHECK_PATH, siteID, url);
                 var response = await Post(requestPath, cancellationToken, client);

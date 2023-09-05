@@ -17,18 +17,12 @@ namespace Kentico.Xperience.Siteimprove
         /// </summary>
         public SiteimproveQueueWorker()
         {
-            this.siteimproveService = Service.Resolve<ISiteimproveService>();
+            siteimproveService = Service.Resolve<ISiteimproveService>();
         }
 
 
         /// <inheritdoc />
-        protected override int DefaultInterval
-        {
-            get
-            {
-                return 1000;
-            }
-        }
+        protected override int DefaultInterval => 1000;
 
         /// <inheritdoc />
         protected override void Finish()

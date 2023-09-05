@@ -23,12 +23,13 @@ namespace Kentico.Xperience.Siteimprove.Tests
         protected const string DOMAIN = "http://test.com/";
 
         private protected SiteimproveService service;
-        protected IHttpClientFactory httpClientFactory;
+        private protected IHttpClientFactory httpClientFactory;
         private protected SiteimproveOptions options;
-        protected IEventLogService eventLogService;
+        private protected IEventLogService eventLogService;
         private IHttpContextRetriever httpContextRetriever;
 
-        public static int numberOfRequests;
+
+        public static int NumberOfRequests { get; private set; }
 
 
         protected override void RegisterTestServices()
@@ -67,7 +68,7 @@ namespace Kentico.Xperience.Siteimprove.Tests
             httpContext.Request.Returns(httpRequest);
             httpContextRetriever.GetContext().Returns(httpContext);
 
-            numberOfRequests = 0;
+            NumberOfRequests = 0;
 
             service = new SiteimproveService(httpClientFactory, iOptions, eventLogService);
         }
@@ -96,16 +97,17 @@ namespace Kentico.Xperience.Siteimprove.Tests
         /// <param name="responseMessages">Responses to use for requests, returned by the given order.</param>
         protected void MockHttpClient(IList<HttpResponseMessage> responseMessages)
         {
-            var httpClient = new HttpClient(new MockHttpMessageHandler(responseMessages));
-
-            httpClient.BaseAddress = new Uri(SiteimproveConstants.BASE_URL);
+            var httpClient = new HttpClient(new MockHttpMessageHandler(responseMessages))
+            {
+                BaseAddress = new Uri(SiteimproveConstants.BASE_URL)
+            };
             httpClientFactory.CreateClient(SiteimproveConstants.CLIENT_NAME).Returns(httpClient);
         }
 
 
         private class MockHttpMessageHandler : HttpMessageHandler
         {
-            private Queue<HttpResponseMessage> responseMessages;
+            private readonly Queue<HttpResponseMessage> responseMessages;
 
 
             public MockHttpMessageHandler(IEnumerable<HttpResponseMessage> responseMessages)
@@ -122,7 +124,7 @@ namespace Kentico.Xperience.Siteimprove.Tests
 
             protected override HttpResponseMessage Send(HttpRequestMessage request, CancellationToken cancellationToken)
             {
-                numberOfRequests++;
+                NumberOfRequests++;
                 return responseMessages.Dequeue();
             }
         }

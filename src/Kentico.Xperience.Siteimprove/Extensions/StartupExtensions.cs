@@ -51,14 +51,11 @@ namespace Kentico.Xperience.Siteimprove
         /// <param name="app">Application builder.</param>
         public static IApplicationBuilder UseSiteimprove(this IApplicationBuilder app)
         {
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
+            app.UseEndpoints(endpoints => endpoints.MapControllerRoute(
                     name: SiteimproveConstants.CONFIGURATION_SCRIPT_ROUTE_NAME,
                     pattern: SiteimproveConstants.CONFIGURATION_SCRIPT_ROUTE_PATTERN,
                     defaults: new { controller = "Siteimprove", action = "ConfigurationScript" }
-                );
-            });
+                ));
 
             return app;
         }
@@ -66,7 +63,7 @@ namespace Kentico.Xperience.Siteimprove
 
         private static void AddDefaultAuthorization(HttpClient httpClient, SiteimproveOptions siteimproveOptions)
         {
-            var byteArray = Encoding.UTF8.GetBytes($"{siteimproveOptions.APIUser}:{siteimproveOptions.APIKey}");
+            byte[] byteArray = Encoding.UTF8.GetBytes($"{siteimproveOptions.APIUser}:{siteimproveOptions.APIKey}");
 
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
         }

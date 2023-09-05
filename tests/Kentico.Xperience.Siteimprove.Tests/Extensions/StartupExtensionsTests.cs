@@ -54,7 +54,7 @@ namespace Kentico.Xperience.Siteimprove.Tests
                 var httpClientFactory = serviceProvider.GetService<IHttpClientFactory>();
                 var httpClient = httpClientFactory.CreateClient(SiteimproveConstants.CLIENT_NAME);
 
-                var byteArray = Encoding.UTF8.GetBytes($"{APIUSER}:{APIKEY}");
+                byte[] byteArray = Encoding.UTF8.GetBytes($"{APIUSER}:{APIKEY}");
 
                 var authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
 
@@ -78,21 +78,16 @@ namespace Kentico.Xperience.Siteimprove.Tests
             [TestCase("", "", TestName = "AddSiteimprove_APIUserAndAPIKeyEmpty_ThrowsException")]
             public void AddSiteimprove_InvalidOptions_SetupOptionsAddHttpClient(string apiKey, string apiUser)
             {
-                bool enableContentCheck = true;
-
                 configuration = new ConfigurationBuilder()
                     .AddInMemoryCollection(new Dictionary<string, string>
                     {
                         { $"{SiteimproveConstants.SECTION_KEY}:{nameof(SiteimproveOptions.APIUser)}", apiUser },
                         { $"{SiteimproveConstants.SECTION_KEY}:{nameof(SiteimproveOptions.APIKey)}", apiKey },
-                        { $"{SiteimproveConstants.SECTION_KEY}:{nameof(SiteimproveOptions.EnableContentCheck)}", enableContentCheck ? "true" : "false" },
+                        { $"{SiteimproveConstants.SECTION_KEY}:{nameof(SiteimproveOptions.EnableContentCheck)}", "true" },
                     })
                     .Build();
 
-                Assert.Multiple(() =>
-                {
-                    Assert.That(() => services.AddSiteimprove(configuration), Throws.InvalidOperationException);
-                });
+                Assert.That(() => services.AddSiteimprove(configuration), Throws.InvalidOperationException);
             }
         }
     }

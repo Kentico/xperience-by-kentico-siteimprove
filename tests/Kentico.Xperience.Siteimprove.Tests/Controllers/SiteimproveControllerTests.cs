@@ -41,7 +41,7 @@ namespace Kentico.Xperience.Siteimprove.Tests
             public async Task ConfigurationScript_Valid_ReturnsCorrectContent()
             {
                 int pageID = 20;
-                var script = $"const test = 'test_{pageID}';";
+                string script = $"const test = 'test_{pageID}';";
 
                 scriptsProvider.GetConfigurationScript(pageID, CancellationToken.None).Returns(script);
 
