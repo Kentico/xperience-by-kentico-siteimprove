@@ -10,7 +10,7 @@ namespace Kentico.Xperience.Siteimprove
     /// <summary>
     /// Interface for providing Siteimprove configuration script.
     /// </summary>
-    internal interface ISiteimproveScriptsProvider
+    public interface ISiteimproveScriptsProvider
     {
         /// <summary>
         /// Returns configuration script of the Siteimprove plugin.

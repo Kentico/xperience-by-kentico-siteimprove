@@ -1,6 +1,4 @@
-﻿using CMS.Core;
-
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Kentico.Xperience.Siteimprove
 {
@@ -18,9 +16,9 @@ namespace Kentico.Xperience.Siteimprove
         /// <summary>
         /// Initializes an instance of the <see cref="SiteimproveController"/> class.
         /// </summary>
-        public SiteimproveController()
+        public SiteimproveController(ISiteimproveScriptsProvider scriptsProvider)
         {
-            siteimproveScriptsProvider = Service.Resolve<ISiteimproveScriptsProvider>();
+            siteimproveScriptsProvider = scriptsProvider;
         }
 
 

@@ -1,5 +1,4 @@
-﻿using CMS.Core;
-using CMS.Tests;
+﻿using CMS.Tests;
 
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,19 +20,12 @@ namespace Kentico.Xperience.Siteimprove.Tests
             private ISiteimproveScriptsProvider scriptsProvider;
 
 
-            protected override void RegisterTestServices()
-            {
-                base.RegisterTestServices();
-
-                scriptsProvider = Substitute.For<ISiteimproveScriptsProvider>();
-                Service.Use<ISiteimproveScriptsProvider>(scriptsProvider);
-            }
-
-
             [SetUp]
             public void SetUp()
             {
-                controller = new SiteimproveController();
+                scriptsProvider = Substitute.For<ISiteimproveScriptsProvider>();
+
+                controller = new SiteimproveController(scriptsProvider);
             }
 
 

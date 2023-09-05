@@ -1,7 +1,5 @@
 ﻿using System.Web;
 
-using CMS.Core;
-
 using Kentico.Web.Mvc;
 
 using Microsoft.AspNetCore.Html;
@@ -13,6 +11,17 @@ namespace Kentico.Xperience.Siteimprove
 {
     internal class SiteimproveScriptsRenderer : ISiteimproveScriptsRenderer
     {
+        private readonly IActionContextAccessor actionContextAccessor;
+        private readonly IUrlHelperFactory urlHelperFactory;
+
+
+        public SiteimproveScriptsRenderer(IActionContextAccessor actionContextAccessor, IUrlHelperFactory urlHelperFactory)
+        {
+            this.actionContextAccessor = actionContextAccessor;
+            this.urlHelperFactory = urlHelperFactory;
+        }
+
+
         /// <inheritdoc/>
         public IHtmlContent RenderPluginScriptTag()
         {
@@ -23,9 +32,6 @@ namespace Kentico.Xperience.Siteimprove
         /// <inheritdoc/>
         public IHtmlContent RenderConfigurationScriptTag(int pageId)
         {
-            var actionContextAccessor = Service.Resolve<IActionContextAccessor>();
-            var urlHelperFactory = Service.Resolve<IUrlHelperFactory>();
-
             if (actionContextAccessor.ActionContext == null)
             {
                 return new HtmlContentBuilder();
@@ -50,6 +56,17 @@ namespace Kentico.Xperience.Siteimprove
             script.Attributes.Add("type", "text/javascript");
 
             return script;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is SiteimproveScriptsRenderer renderer &&
+                   EqualityComparer<IActionContextAccessor>.Default.Equals(actionContextAccessor, renderer.actionContextAccessor);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(actionContextAccessor);
         }
     }
 }

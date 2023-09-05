@@ -1,5 +1,4 @@
-﻿using CMS.Core;
-using CMS.DocumentEngine;
+﻿using CMS.DocumentEngine;
 using CMS.Tests;
 
 using Kentico.Content.Web.Mvc;
@@ -26,20 +25,14 @@ namespace Kentico.Xperience.Siteimprove.Tests
             private IPageDataContextRetriever pageDataContextRetriever;
 
 
-            protected override void RegisterTestServices()
-            {
-                base.RegisterTestServices();
-
-                pageDataContextRetriever = Substitute.For<IPageDataContextRetriever>();
-                Service.Use<IPageDataContextRetriever>(pageDataContextRetriever);
-            }
-
-
             [SetUp]
             public void SetUp()
             {
+                pageDataContextRetriever = Substitute.For<IPageDataContextRetriever>();
+
+                tagHelper = new SiteimproveDeeplinkTagHelper(pageDataContextRetriever);
+
                 string tagName = "siteimprove-deeplink";
-                tagHelper = new SiteimproveDeeplinkTagHelper();
                 context = new TagHelperContext(tagName, new TagHelperAttributeList(), new Dictionary<object, object>(), "test");
                 output = new TagHelperOutput(tagName, new TagHelperAttributeList(), (useCached, htmlEncoder) =>
                     Task.FromResult<TagHelperContent>(new DefaultTagHelperContent()));

@@ -1,12 +1,8 @@
-﻿using CMS.Core;
-
-using Kentico.Web.Mvc;
+﻿using Kentico.Web.Mvc;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Routing;
 
 using NSubstitute;
@@ -41,27 +37,14 @@ namespace Kentico.Xperience.Siteimprove.Tests
         {
             private const string ROUTE = "http://localhost/admin/configurationscript.js";
 
-            private IActionContextAccessor actionContextAccessor;
-            private IUrlHelperFactory urlHelperFactory;
             private IUrlHelper urlHelper;
-
-
-            protected override void RegisterTestServices()
-            {
-                base.RegisterTestServices();
-
-                actionContextAccessor = Substitute.For<IActionContextAccessor>();
-                actionContextAccessor.ActionContext = Substitute.For<ActionContext>(Substitute.For<HttpContext>(), new RouteData(), new ActionDescriptor());
-                Service.Use<IActionContextAccessor>(actionContextAccessor);
-
-                urlHelperFactory = Substitute.For<IUrlHelperFactory>();
-                Service.Use<IUrlHelperFactory>(urlHelperFactory);
-            }
 
 
             [SetUp]
             public void Setup()
             {
+                actionContextAccessor.ActionContext = Substitute.For<ActionContext>(Substitute.For<HttpContext>(), new RouteData(), new ActionDescriptor());
+
                 urlHelper = Substitute.For<IUrlHelper>();
 
                 urlHelperFactory.GetUrlHelper(actionContextAccessor.ActionContext).Returns(urlHelper);

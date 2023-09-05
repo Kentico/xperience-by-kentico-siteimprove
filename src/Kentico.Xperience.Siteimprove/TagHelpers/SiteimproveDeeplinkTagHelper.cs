@@ -1,5 +1,4 @@
-﻿using CMS.Core;
-using CMS.DocumentEngine;
+﻿using CMS.DocumentEngine;
 
 using Kentico.Content.Web.Mvc;
 
@@ -13,6 +12,16 @@ namespace Kentico.Xperience.Siteimprove
     /// </summary>
     public class SiteimproveDeeplinkTagHelper : TagHelper
     {
+        private readonly IPageDataContextRetriever pageDataContextRetriever;
+
+
+        public SiteimproveDeeplinkTagHelper(IPageDataContextRetriever pageDataContextRetriever)
+        {
+
+            this.pageDataContextRetriever = pageDataContextRetriever;
+        }
+
+
         /// <inheritdoc/>
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
@@ -27,8 +36,6 @@ namespace Kentico.Xperience.Siteimprove
             }
 
             output.TagName = null;
-
-            var pageDataContextRetriever = Service.Resolve<IPageDataContextRetriever>();
 
             pageDataContextRetriever.TryRetrieve<TreeNode>(out var data);
 

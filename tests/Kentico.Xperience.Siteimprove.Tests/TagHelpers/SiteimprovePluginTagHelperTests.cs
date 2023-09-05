@@ -36,22 +36,21 @@ namespace Kentico.Xperience.Siteimprove.Tests
             {
                 base.RegisterTestServices();
 
-                pageDataContextRetriever = Substitute.For<IPageDataContextRetriever>();
-                Service.Use<IPageDataContextRetriever>(pageDataContextRetriever);
-
                 httpContextRetriever = Substitute.For<IHttpContextRetriever>();
                 Service.Use<IHttpContextRetriever>(httpContextRetriever);
-
-                scriptsRenderer = Substitute.For<ISiteimproveScriptsRenderer>();
-                Service.Use<ISiteimproveScriptsRenderer>(scriptsRenderer);
             }
 
 
             [SetUp]
             public void SetUp()
             {
+                pageDataContextRetriever = Substitute.For<IPageDataContextRetriever>();
+
+                scriptsRenderer = Substitute.For<ISiteimproveScriptsRenderer>();
+
+                tagHelper = new SiteimprovePluginTagHelper(pageDataContextRetriever, scriptsRenderer);
+
                 string tagName = "siteimprove-plugin";
-                tagHelper = new SiteimprovePluginTagHelper();
                 context = new TagHelperContext(tagName, new TagHelperAttributeList(), new Dictionary<object, object>(), "test");
                 output = new TagHelperOutput(tagName, new TagHelperAttributeList(), (useCached, htmlEncoder) =>
                     Task.FromResult<TagHelperContent>(new DefaultTagHelperContent()));

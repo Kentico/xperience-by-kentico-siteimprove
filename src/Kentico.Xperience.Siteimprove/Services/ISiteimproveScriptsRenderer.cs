@@ -12,7 +12,7 @@ namespace Kentico.Xperience.Siteimprove
     /// <summary>
     /// Interface for rendering Siteimprove script tags.
     /// </summary>
-    internal interface ISiteimproveScriptsRenderer
+    public interface ISiteimproveScriptsRenderer
     {
         /// <summary>
         /// Renders script tag with src set to URL of Siteimprove plugin.

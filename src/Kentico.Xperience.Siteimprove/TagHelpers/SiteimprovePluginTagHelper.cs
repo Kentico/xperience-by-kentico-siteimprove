@@ -1,6 +1,4 @@
 using System.Text.RegularExpressions;
-
-using CMS.Core;
 using CMS.DocumentEngine;
 using CMS.Helpers;
 
@@ -16,6 +14,17 @@ namespace Kentico.Xperience.Siteimprove
     /// </summary>
     public class SiteimprovePluginTagHelper : TagHelper
     {
+        private readonly IPageDataContextRetriever pageDataContextRetriever;
+        private readonly ISiteimproveScriptsRenderer siteimproveScriptsRenderer;
+
+
+        public SiteimprovePluginTagHelper(IPageDataContextRetriever pageDataContextRetriever, ISiteimproveScriptsRenderer siteimproveScriptsRenderer)
+        {
+            this.pageDataContextRetriever = pageDataContextRetriever;
+            this.siteimproveScriptsRenderer = siteimproveScriptsRenderer;
+        }
+
+
         /// <inheritdoc/>
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
@@ -41,8 +50,6 @@ namespace Kentico.Xperience.Siteimprove
                 return;
             }
 
-            var pageDataContextRetriever = Service.Resolve<IPageDataContextRetriever>();
-
             pageDataContextRetriever.TryRetrieve<TreeNode>(out var data);
 
             var node = data?.Page;
@@ -52,11 +59,9 @@ namespace Kentico.Xperience.Siteimprove
                 return;
             }
 
-            var scriptsRenderer = Service.Resolve<ISiteimproveScriptsRenderer>();
-
             output.Content.SetHtmlContent(new HtmlContentBuilder()
-                .AppendLine(scriptsRenderer.RenderPluginScriptTag())
-                .AppendLine(scriptsRenderer.RenderConfigurationScriptTag(node.DocumentID)));
+                .AppendLine(siteimproveScriptsRenderer.RenderPluginScriptTag())
+                .AppendLine(siteimproveScriptsRenderer.RenderConfigurationScriptTag(node.DocumentID)));
         }
     }
 }

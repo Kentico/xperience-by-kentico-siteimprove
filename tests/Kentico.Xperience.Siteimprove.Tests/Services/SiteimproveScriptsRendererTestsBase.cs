@@ -1,9 +1,9 @@
 ﻿using System.Text.Encodings.Web;
-
 using CMS.Tests;
-
 using Microsoft.AspNetCore.Html;
-
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.Routing;
+using NSubstitute;
 using NUnit.Framework;
 
 namespace Kentico.Xperience.Siteimprove.Tests
@@ -13,13 +13,19 @@ namespace Kentico.Xperience.Siteimprove.Tests
     /// </summary>
     public class SiteimproveScriptsRendererTestsBase : UnitTests
     {
+        private protected IActionContextAccessor actionContextAccessor;
+        private protected IUrlHelperFactory urlHelperFactory;
         private protected ISiteimproveScriptsRenderer scriptsRenderer;
 
 
         [SetUp]
         public void SetUp()
         {
-            scriptsRenderer = new SiteimproveScriptsRenderer();
+            actionContextAccessor = Substitute.For<IActionContextAccessor>();
+
+            urlHelperFactory = Substitute.For<IUrlHelperFactory>();
+
+            scriptsRenderer = new SiteimproveScriptsRenderer(actionContextAccessor, urlHelperFactory);
         }
 
 
