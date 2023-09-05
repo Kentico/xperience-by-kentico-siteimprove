@@ -59,6 +59,17 @@ By following the steps below, the integration setups automatically on the first 
 
 ### Setup of CMS Deeplink
 
+1. In `Program.cs`, register services by adding
+
+    ```cs
+    WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+    
+    ...
+    builder.Services.AddKentico();
+    builder.Services.AddSiteimprove(builder.Configuration);
+    ```
+
+
 1. In `Views/_ViewImports.cshtml`, add Tag Helper
     ```cs
     @using Kentico.Xperience.Siteimprove

@@ -41,6 +41,10 @@ namespace Kentico.Xperience.Siteimprove
                 AddDefaultAuthorization(client, siteimproveOptions);
             });
 
+            services.AddSingleton<ISiteimproveService, SiteimproveService>();
+            services.AddSingleton<ISiteimproveScriptsProvider, SiteimproveScriptsProvider>();
+            services.AddSingleton<ISiteimproveScriptsRenderer, SiteimproveScriptsRenderer>();
+
             return services;
         }
 

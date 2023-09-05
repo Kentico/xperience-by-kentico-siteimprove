@@ -1,11 +1,4 @@
-﻿using CMS;
-using CMS.Core;
-
-using Kentico.Xperience.Siteimprove;
-
-using Microsoft.AspNetCore.Html;
-
-[assembly: RegisterImplementation(typeof(ISiteimproveScriptsRenderer), typeof(SiteimproveScriptsRenderer), Lifestyle = Lifestyle.Singleton, Priority = RegistrationPriority.SystemDefault)]
+﻿using Microsoft.AspNetCore.Html;
 
 namespace Kentico.Xperience.Siteimprove
 {

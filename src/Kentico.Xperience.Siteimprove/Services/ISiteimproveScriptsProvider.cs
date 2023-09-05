@@ -1,11 +1,4 @@
-﻿using CMS;
-using CMS.Core;
-
-using Kentico.Xperience.Siteimprove;
-
-[assembly: RegisterImplementation(typeof(ISiteimproveScriptsProvider), typeof(SiteimproveScriptsProvider), Lifestyle = Lifestyle.Singleton, Priority = RegistrationPriority.SystemDefault)]
-
-namespace Kentico.Xperience.Siteimprove
+﻿namespace Kentico.Xperience.Siteimprove
 {
     /// <summary>
     /// Interface for providing Siteimprove configuration script.
