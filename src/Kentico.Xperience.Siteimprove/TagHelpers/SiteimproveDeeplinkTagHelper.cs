@@ -15,6 +15,10 @@ namespace Kentico.Xperience.Siteimprove
         private readonly IPageDataContextRetriever pageDataContextRetriever;
 
 
+        /// <summary>
+        /// Initializes an instance of the <see cref="SiteimproveDeeplinkTagHelper"/> class.
+        /// </summary>
+        /// <param name="pageDataContextRetriever">Page data context retriever.</param>
         public SiteimproveDeeplinkTagHelper(IPageDataContextRetriever pageDataContextRetriever)
         {
 

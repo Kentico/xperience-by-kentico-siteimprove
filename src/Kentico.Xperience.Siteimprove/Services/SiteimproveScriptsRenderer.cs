@@ -15,6 +15,11 @@ namespace Kentico.Xperience.Siteimprove
         private readonly IUrlHelperFactory urlHelperFactory;
 
 
+        /// <summary>
+        /// Initializes an instance of the <see cref="SiteimproveScriptsRenderer"/> class.
+        /// </summary>
+        /// <param name="actionContextAccessor">Action context accessor.</param>
+        /// <param name="urlHelperFactory">Url helper factory.</param>
         public SiteimproveScriptsRenderer(IActionContextAccessor actionContextAccessor, IUrlHelperFactory urlHelperFactory)
         {
             this.actionContextAccessor = actionContextAccessor;

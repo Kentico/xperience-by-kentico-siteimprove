@@ -18,6 +18,11 @@ namespace Kentico.Xperience.Siteimprove
         private readonly ISiteimproveScriptsRenderer siteimproveScriptsRenderer;
 
 
+        /// <summary>
+        /// Initializes an instance of the <see cref="SiteimprovePluginTagHelper"/> class.
+        /// </summary>
+        /// <param name="pageDataContextRetriever">Page data context retriever.</param>
+        /// <param name="siteimproveScriptsRenderer">Siteimprove scripts renderer.</param>
         public SiteimprovePluginTagHelper(IPageDataContextRetriever pageDataContextRetriever, ISiteimproveScriptsRenderer siteimproveScriptsRenderer)
         {
             this.pageDataContextRetriever = pageDataContextRetriever;

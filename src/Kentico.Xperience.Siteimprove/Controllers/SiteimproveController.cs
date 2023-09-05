@@ -16,9 +16,10 @@ namespace Kentico.Xperience.Siteimprove
         /// <summary>
         /// Initializes an instance of the <see cref="SiteimproveController"/> class.
         /// </summary>
-        public SiteimproveController(ISiteimproveScriptsProvider scriptsProvider)
+        /// <param name="siteimproveScriptsProvider">Siteimprove scripts provider.</param>
+        public SiteimproveController(ISiteimproveScriptsProvider siteimproveScriptsProvider)
         {
-            siteimproveScriptsProvider = scriptsProvider;
+            this.siteimproveScriptsProvider = siteimproveScriptsProvider;
         }
 
 
