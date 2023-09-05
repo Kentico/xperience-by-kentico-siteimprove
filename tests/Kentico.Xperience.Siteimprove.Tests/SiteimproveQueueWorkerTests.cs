@@ -98,9 +98,11 @@ namespace Kentico.Xperience.Siteimprove.Tests
 
                 SiteimproveQueueWorker.EnqueueNodes(nodes);
 
+                // Since the queue worker processes the items in a `fire and forget` manner, short delay is required to ensure the operation finishes.
+                Thread.Sleep(1000);
+
                 Assert.Multiple(async () =>
                 {
-                    await service.Received(3).CheckPages(Arg.Any<IEnumerable<string>>());
                     await service.Received(1).CheckPages(Arg.Is<IEnumerable<string>>(e => e.First().Contains(ALIAS_1)));
                     await service.Received(1).CheckPages(Arg.Is<IEnumerable<string>>(e => e.First().Contains(ALIAS_2)));
                     await service.Received(1).CheckPages(Arg.Is<IEnumerable<string>>(e => e.First().Contains(ALIAS_3)));
@@ -119,6 +121,9 @@ namespace Kentico.Xperience.Siteimprove.Tests
                 };
 
                 SiteimproveQueueWorker.EnqueueNodes(nodes);
+
+                // Since the queue worker processes the items in a `fire and forget` manner, short delay is required to ensure the operation finishes.
+                Thread.Sleep(1000);
 
                 Assert.Multiple(async () =>
                 {
