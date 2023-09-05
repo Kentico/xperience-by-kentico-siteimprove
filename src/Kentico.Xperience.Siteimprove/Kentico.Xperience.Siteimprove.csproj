@@ -1,10 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-		<WarningsAsErrors>nullable</WarningsAsErrors>
 		<Title>Siteimprove integration for Xperience by Kentico</Title>
 		<Description>Siteimprove integration into Xperience by Kentico</Description>
 		<RepositoryUrl>https://github.com/Kentico/xperience-by-kentico-siteimprove</RepositoryUrl>
