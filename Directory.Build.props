@@ -34,6 +34,7 @@
     <RootNamespace>Kentico.Xperience.Siteimprove</RootNamespace>
 
     <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+    <TimestampServerUrl>http://timestamp.digicert.com</TimestampServerUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition=" $(Configuration) == 'Release' ">
