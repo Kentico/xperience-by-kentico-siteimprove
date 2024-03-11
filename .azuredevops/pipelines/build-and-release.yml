@@ -51,7 +51,7 @@ stages:
             value: Release
 
           - name: ProjectPath
-            value: src/PROJECT_NAME/PROJECT_NAME.csproj
+            value: src/Kentico.Xperience.Siteimprove/Kentico.Xperience.Siteimprove.csproj
 
         steps:
           - task: DotNetCoreCLI@2
